@@ -1,54 +1,46 @@
-# 📸 Pics — 基于 Unsplash 的图片搜索网站
+# 📸 Pics — Unsplash‑Powered Image Search
 
-用 React + Vite 构建的轻量图片搜索站点，接入 Unsplash API，支持按关键字搜索网络高清图片。输入想看的主题，一键发现灵感！🌅🔍
+A lightweight image search site built with React + Vite. It integrates the Unsplash API to search for high‑quality photos by keyword. Type a topic and get inspired! 🌅🔍
 
-> 当前版本已完成 API 接入与搜索流程，图片卡片渲染处于进行中（暂显示结果数量）。欢迎继续迭代～
+> The current version has API integration and the search flow working. Image card rendering is in progress (it shows the result count for now). Contributions welcome!
 
 ---
 
-## ✨ 功能特性
-- 🔍 关键词搜索 Unsplash 图片
-- ⚡️ Vite + React 19 + Axios，开发体验流畅
-- 🧩 组件化结构：`SearchBar`、`ImageList`、`ImageShow`
-- 📱 计划支持响应式瀑布流布局与懒加载（进行中）
+## ✨ Features
+- 🔍 Search Unsplash photos by keyword
+- ⚡️ Vite + React 19 + Axios for a fast DX
+- 🧩 Componentized structure: `SearchBar`, `ImageList`, `ImageShow`
+- 📱 Planned: responsive masonry layout and lazy loading (WIP)
 
-## 🚀 快速开始
+## 🚀 Getting Started
 
-前置要求：Node.js ≥ 18
+Prerequisites: Node.js ≥ 18
 
 ```bash
 npm install
 npm start
 ```
 
-默认使用 Vite 本地开发服务器，启动后在浏览器打开：http://localhost:5173
 
-构建与预览：
+## 🔑 Unsplash API Setup
 
-```bash
-npm run build
-npm run preview
-```
+This project uses Unsplash’s Search Photos endpoint to fetch images.
 
-## 🔑 配置 Unsplash API
+1) Get an Access Key (recommended):
+- Sign in at Unsplash Developers: https://unsplash.com/developers
+- Create an app and obtain your `Access Key`
 
-本项目通过 Unsplash 的 Search Photos 接口获取图片。
+2) Quick start (sample key included):
+- `src/api.js` contains a sample `Client-ID` for learning and quick start. For real use, replace it with your own key to avoid quota or permission issues.
 
-1) 获取 Access Key（推荐）：
-- 注册/登录 Unsplash Developers：https://unsplash.com/developers
-- 创建应用并获取 `Access Key`
-
-2) 快速运行（已有示例 Key）：
-- 代码中 `src/api.js` 已写入示例用的 `Client-ID`，便于快速启动与学习；实际项目请替换为你自己的 Key，避免配额与权限问题。
-
-3) 使用环境变量（更安全的做法）：
-- 在项目根目录新建 `.env`：
+3) Use environment variables (safer):
+- Create a `.env` file at the project root:
 
 ```env
-VITE_UNSPLASH_ACCESS_KEY=你的_access_key
+VITE_UNSPLASH_ACCESS_KEY=your_access_key
 ```
 
-- 修改 `src/api.js`：
+- Update `src/api.js`:
 
 ```js
 import axios from 'axios';
@@ -68,53 +60,51 @@ const searchImages = async (term) => {
 export default searchImages;
 ```
 
-提示：Unsplash 的 Access Key 属于「公开可用」的前端 Key，但仍建议通过环境变量管理，便于在不同环境替换并减少误用。
+Note: Unsplash Access Keys are intended for public client usage, but environment variables still help manage different environments and reduce accidental misuse.
 
-## 🧭 工作原理
+## 🧭 How It Works
 
-- `src/components/SearhBar.js`（拼写：SearhBar）负责输入与提交，触发 `onSubmit(term)`。
-- `src/App.js` 中：
-  - 使用 `useState` 管理 `images`（确保写法为 `const [images, setImages] = useState([])`）。
-  - 在 `handleSubmit` 调用 `searchImages(term)`（见 `src/api.js`），拿到结果后 `setImages(result)`。
-  - 将 `images` 传给 `ImageList` 进行展示。
-- `src/components/ImageList.js`：当前展示结果数量，计划渲染网格卡片。
-- `src/components/ImageShow.js`：用于渲染单张图片（占位中，将在后续迭代）。
+- `src/components/SearhBar.js` (spelling: SearhBar) handles input and submit, and calls `onSubmit(term)`.
+- In `src/App.js`:
+  - Manage `images` state with `useState` (use `const [images, setImages] = useState([])`).
+  - `handleSubmit` calls `searchImages(term)` (see `src/api.js`) and then `setImages(result)`.
+  - Pass `images` to `ImageList` for display.
+- `src/components/ImageList.js`: currently renders the result count; grid cards are planned.
+- `src/components/ImageShow.js`: placeholder for a single image card (to be implemented).
 
-## 🗂️ 目录结构
+## 🗂️ Project Structure
 
 ```
 src/
-  App.js              # 页面与数据流入口
-  api.js              # Unsplash API 封装（Axios）
+  App.js              # App entry and data flow
+  api.js              # Unsplash API wrapper (Axios)
   components/
-    SearhBar.js       # 搜索输入与提交（注意拼写）
-    ImageList.js      # 图片列表（当前显示数量）
-    ImageShow.js      # 单图组件（待完善）
+    SearhBar.js       # Search input + submit (note the spelling)
+    ImageList.js      # Image list (shows count for now)
+    ImageShow.js      # Single image component (WIP)
 ```
 
-## 🛠️ 常见问题
+## 🛠️ Troubleshooting
 
-- images 为 undefined 报错？
-  - 确认使用数组解构：`const [images, setImages] = useState([])`；
-  - 传参时为 `images={images}`，并在组件端做默认值兜底 `function ImageList({ images = [] }) { ... }`。
-- 429 / 配额限制：
-  - 更换为你自己的 Unsplash Access Key；
-  - 避免高频请求，可在搜索时加防抖。
-- 网络/CORS 问题：
-  - 确保本地网络可访问 Unsplash；检查控制台与 Network 面板日志。
+- Getting “images is undefined” errors?
+  - Ensure array destructuring: `const [images, setImages] = useState([])`.
+  - Pass the prop as `images={images}` and use a default in the component: `function ImageList({ images = [] }) { ... }`.
+- 429 / Rate limits:
+  - Use your own Unsplash Access Key.
+  - Debounce search to reduce request frequency.
+- Network/CORS issues:
+  - Ensure your network can reach Unsplash; check DevTools Console and Network tabs.
 
-## 🧭 Roadmap（计划）
+## 🧭 Roadmap
 
-- ✅ 接入 Unsplash 搜索接口
-- 🔄 图片卡片与网格布局（`ImageShow`/`ImageList`）
-- ⏳ 懒加载与无限滚动
-- 🧽 加载中/错误状态与占位骨架
-- 🧭 搜索防抖与历史记录
-- 🌗 主题切换与无障碍优化
+- ✅ Integrate Unsplash search endpoint
+- 🔄 Image cards and grid layout (`ImageShow`/`ImageList`)
+- ⏳ Lazy loading and infinite scrolling
+- 🧽 Loading/error states and skeletons
+- 🧭 Search debounce and history
+- 🌗 Theme toggle and accessibility polish
 
-## 🙏 致谢
+## 🙏 Acknowledgements
 
-- 图片数据由 Unsplash 提供：https://unsplash.com
-- 构建工具与库：Vite、React、Axios
-
-—— 祝你浏览愉快，创作顺利！🎉
+- Photos provided by Unsplash: https://unsplash.com
+- Tooling and libraries: Vite, React, Axios🎉
