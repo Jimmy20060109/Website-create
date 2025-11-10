@@ -1,0 +1,9 @@
+.image-show {
+  border: 2px solid black;
+  border-radius: 8px; /* rounded corners for the border */
+  overflow: hidden;   /* clip inner image to the rounded corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.image-show { line-height: 0; }
+
