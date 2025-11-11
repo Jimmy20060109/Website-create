@@ -1,0 +1,11 @@
+# General
+node_modules/
+.DS_Store
+
+# Build outputs
+build/
+dist/
+
+# Local backups
+*.bak
+note_project/.git.bak/
