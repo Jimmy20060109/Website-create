@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/Website-create/static/css/main.6a167b55.chunk.css",
+    "main.js": "/Website-create/static/js/main.a4ab5843.chunk.js",
+    "main.js.map": "/Website-create/static/js/main.a4ab5843.chunk.js.map",
+    "runtime-main.js": "/Website-create/static/js/runtime-main.a3713e3b.js",
+    "runtime-main.js.map": "/Website-create/static/js/runtime-main.a3713e3b.js.map",
+    "static/js/2.6e6cd428.chunk.js": "/Website-create/static/js/2.6e6cd428.chunk.js",
+    "static/js/2.6e6cd428.chunk.js.map": "/Website-create/static/js/2.6e6cd428.chunk.js.map",
+    "index.html": "/Website-create/index.html",
+    "precache-manifest.b24a6e31817901cfa03e2a438c8ef719.js": "/Website-create/precache-manifest.b24a6e31817901cfa03e2a438c8ef719.js",
+    "service-worker.js": "/Website-create/service-worker.js",
+    "static/css/main.6a167b55.chunk.css.map": "/Website-create/static/css/main.6a167b55.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a3713e3b.js",
+    "static/js/2.6e6cd428.chunk.js",
+    "static/css/main.6a167b55.chunk.css",
+    "static/js/main.a4ab5843.chunk.js"
+  ]
+}
