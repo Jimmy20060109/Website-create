@@ -20,6 +20,44 @@ function App() {
          * eg: books.push() is bad
          * eg: books[0] = 'blue'
          */
+
+        /** Another method to update array
+         * const updatedBooks = [
+         * ... books.slice(0, index) [0, index)
+         * , newItem,
+         * ... books.slice(index) [index, books.length)
+         * ];
+         */
+
+        //Removing element in array
+        // 1, remove certain element in array
+        colors = ['green', 'red', 'blue'];
+
+        const removeColor = (colorToRemove) => {
+            const updatedColors = colors.filter((color) => {
+                return color !== colorToRemove;
+            });
+            //setColor(updatedColors);
+        };
+        //2, remove element at certain index
+        const removeColorAtIndex = (indexRemove) => {
+            const updatedColors = colors.filter((color, index) => {
+                return index != indexRemove;
+            });
+            // setColor(updatedColors);
+        };
+        // 3, remove a certain property in object of array
+        const users = [
+            {name: 'Jimmy', age: 20},
+            {name: 'Sara', age: 25},
+            {name: 'Tom', age: 30}
+        ];
+        const removeAgeProperty = (ageRemove) => {
+            const updatedUsers = users.filter((user) => {
+                return user.age !== ageRemove;
+            });
+            // setUsers(updatedUsers);
+        };
     };
 
     /**
