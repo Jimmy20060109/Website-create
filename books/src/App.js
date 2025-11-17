@@ -1,15 +1,24 @@
 import {useState} from 'react';
 import BookCreate from './components/BookCreate';
+import BookList from './components/BookList';
 
 function App() {
     const [books, setBooks] = useState([]);
+    const deleteBookById = (id) => {
+        const updatedBooks = books.filter((book) => {
+            return book.id !== id;
+        });
+        setBooks(updatedBooks);
+    };
+
     const handleCreateBook = (title) => {
         // Bad Code
         //books.push({id:123, title:title});
         //setBooks(books);
         const updatedBooks = [
             ...books,
-            {id: 123, title: title}
+            {id: Math.round(Math.random() * 9999),
+             title: title}
         ];
         setBooks(updatedBooks);
 
@@ -31,7 +40,7 @@ function App() {
 
         //Removing element in array
         // 1, remove certain element in array
-        colors = ['green', 'red', 'blue'];
+        /*colors = ['green', 'red', 'blue'];
 
         const removeColor = (colorToRemove) => {
             const updatedColors = colors.filter((color) => {
@@ -42,7 +51,7 @@ function App() {
         //2, remove element at certain index
         const removeColorAtIndex = (indexRemove) => {
             const updatedColors = colors.filter((color, index) => {
-                return index != indexRemove;
+                return index !== indexRemove;
             });
             // setColor(updatedColors);
         };
@@ -58,6 +67,20 @@ function App() {
             });
             // setUsers(updatedUsers);
         };
+
+
+        // update an array
+        const updatedUserByAge = (age, newName) => {
+            const updatedUser = users.map((user) => {
+                if (user.age === age) {
+                    return {...user, name: newName};
+                }
+                return user;
+            });
+        };
+        */
+
+
     };
 
     /**
@@ -66,8 +89,8 @@ function App() {
      * When the user submits the form in BookCreate component,
      * we will call the onCreate prop which is handleCreateBook function
      */
-    return <div>
-        {books.length}
+    return <div className="app">
+        <BookList books={books} onDelete={deleteBookById}/>
         <BookCreate onCreate={handleCreateBook} />
     </div>
 }
