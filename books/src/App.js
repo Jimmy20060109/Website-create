@@ -11,6 +11,17 @@ function App() {
         setBooks(updatedBooks);
     };
 
+    const editBookById = (id, newTitle) => {
+        const updatedBooks = books.map((book) => {
+            if (book.id === id) {
+                return {...book, title: newTitle};
+            }
+            return book;
+        })
+
+        setBooks(updatedBooks);
+    };
+
     const handleCreateBook = (title) => {
         // Bad Code
         //books.push({id:123, title:title});
@@ -90,7 +101,7 @@ function App() {
      * we will call the onCreate prop which is handleCreateBook function
      */
     return <div className="app">
-        <BookList books={books} onDelete={deleteBookById}/>
+        <BookList books={books} onDelete={deleteBookById} onEdit={editBookById}/>
         <BookCreate onCreate={handleCreateBook} />
     </div>
 }
