@@ -93,7 +93,14 @@ function App() {
 
 
     };
-
+    /**
+     index.js
+        └─ App
+            ├─ BookCreate (onCreate -> App)
+            └─ BookList
+                └─ BookShow (onDelete/onEdit -> App)
+                    └─ BookEdit (onEdit -> App)
+     */
     /**
      * Oncreate is a prop we are passing to the BookCreate component
      * handleCreateBook is the function we defined on App.js
@@ -101,6 +108,7 @@ function App() {
      * we will call the onCreate prop which is handleCreateBook function
      */
     return <div className="app">
+        <h1>Reading List</h1>
         <BookList books={books} onDelete={deleteBookById} onEdit={editBookById}/>
         <BookCreate onCreate={handleCreateBook} />
     </div>
