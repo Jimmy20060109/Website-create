@@ -21,6 +21,9 @@ function BookShow({book, onDelete, onEdit}) {
         content = <BookEdit book={book} onEdit={onEdit} clickSubmit={clickSubmit}/>
     }
 
+// a better solution for handle edit
+
+
 
 
     return <div className="book-show">
