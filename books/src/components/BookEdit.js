@@ -12,6 +12,7 @@ function BookEdit({book, clickSubmit}) {
 
         clickSubmit(book.id, title);
     };
+    
     return <form onSubmit={handleSubmit} className="book-edit">
         <label>Title</label>
         <input className="input" value={title} onChange={handleChange}/>
